@@ -1,21 +1,23 @@
-<group4 >
-meeting expectations
+Group4 
+Meeting Expectations
 Meeting Times 
- Every monday, 4-5ish 
-Length of meeting 
-  Meetings should go no longer than one hour
+ Every monday, 4-5ish with a max length 0f 30 minute
 Missing of meeting 
+We will follow the procedure for handling a member who is not meeting expectations 
+Meeting expectations
+Meeting will require full focus from all members and distractions should be minimized
 
 Group Communication and interaction 
 Regular communication: regular communication should be upheld, members should respond in a timely manner 
 Communication ethics: No swearing or talking ill of other group members
-Respect should be shown at all times, everyone's ideas should be considered. 
+  Respect should be shown at all times, everyone's ideas should be considered. 
 Group structure: We are equal sized cogs in the machine 
 Decision making: Decisions will be decided as group 
 Group decisions on delegation:
 
 Definition of done
-Something has been successfully pushed and two team members review it.
+Something has been pushed, and at least 1 member of the team has reviewed the code.
+Only then can it be successfully merged 
 
 Scrum meeting format/frequency and distribution of documentation tasks
 Distribution of documentation tasks and documentation at beginning of each sprint
@@ -24,7 +26,10 @@ Every other scrum meeting should have a backlog grooming session
 
 
 Procedure for adopting policies (e.g. code style, code check-in steps, documentation updates)
-(if you adopt such a policy during the initial meeting, put it here)
+Policies will be discussed at the scrum meetings if they are to be adopted 
+All group members must agree on the policy to be adopted if it is to be adopted
+
+
 
 
 Procedure for handling a member who is not meeting expectations
@@ -43,10 +48,10 @@ Work not up to standard:
 
 
 
-
 SIGNATURES-
 
-Name: Caden Blindauer		Date:
+Name: Caden Blindauer		Date: 4/08/2021
 Name: Caleb Wicker			Date: 4/08/2021
 Name:	Axel Rodriguez		Date: 4 / 08 / 2021
 Name:	Brennan Wolters		Date: 4/8/2021
+
