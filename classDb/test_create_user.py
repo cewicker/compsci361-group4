@@ -35,15 +35,14 @@ class TestCreatteUser(TestCase):
         no_name["name"] = ""
         response = self.c.post('/', no_name, follow=True)
         assert no_name_error in response.context["errMessages"]
-        m = response.context['name']
-        self.assertEqual([],   list(map(str, Stuff.objects.filter(owner__name=m))), "List not empty upon user creation")
 
-    def test_not_empty_shopping_list(self):
-        m = MyUser(name='axel', password='admin')
-        m.save()
-        Stuff(name='carrot', owner=m).save()
-        response2 = self.c.post('/', {"name": "axel", "password": "admin"}, follow=True)
-        self.assertIsNot([ ], response2.context['things'], "Not empty shopping list is empty")
+
+    def test_not_last_empty_user(self):
+        no_last_name = self.user_data
+        no_last_name["last_Name"]=""
+        response = self.c.post('/', no_last_name, follow=True)
+        assert no_last_name_err in response.context["errMessages"]
+
 
 if __name__ == '__main__':
     unittest.main()
