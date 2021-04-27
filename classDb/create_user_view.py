@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from mymodels import User
+from models import User
 from validateFunction import validate_user
 
 
