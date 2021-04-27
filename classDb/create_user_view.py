@@ -26,4 +26,4 @@ class create_User(View):
             user.save()
             return render(request, "create_user.html", {})
         else:
-            return render(request, "create_user_error.html", {"errors": error_dict})
+            return render(request, "create_user.html", {"errors": error_dict})

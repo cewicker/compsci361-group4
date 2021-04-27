@@ -14,7 +14,7 @@ class TestCreateUser(TestCase):
 
     def test_page_redirect(self):
         response = self.c.post('/', self.user_data, follow=True)
-        self.assertEquals([('/things/', 302)], response.redirect_chain, "redirect failed")
+        self.assertEquals([('/create_user/', 302)], response.redirect_chain, "redirect failed")
 
     def test_create_user_name(self):
         response = self.c.post('/', self.user_data, follow=True)
@@ -25,10 +25,6 @@ class TestCreateUser(TestCase):
         self.assertEqual("admin", response.context["role"], "Role not correctly set")
         self.assertEqual("1500", response.context["assignment_ID"], "Assignment ID not equal to set ID")
         self.assertEqual("uwm@email.com", response.context["email"], "Name not the same as entered name")
-
-    def test_page_redirect(self):
-        response = self.c.post('/', {"name": "axel", "password": "admin"}, follow=True)
-        self.assertEquals([('/pop_up_create_user/', 302)], response.redirect_chain, "redirect failed")
 
     def test_no_name_user(self):
         no_name = self.user_data
@@ -65,6 +61,12 @@ class TestCreateUser(TestCase):
         no_role["role"] = ""
         response = self.c.post('/', no_role, follow=True)
         assert "User must be given a role" in response.context["errors"]
+
+    def test_email(self):
+        no_email = self.user_data
+        no_email["email"] = ""
+        response = self.c.post('/', no_email, follow=True)
+        assert "Enter a valid email" in response.context["errors"]
 
 
 if __name__ == '__main__':
