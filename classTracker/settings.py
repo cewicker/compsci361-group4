@@ -11,7 +11,16 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import django
+import os
+#from classDb.models import Course
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'classTracker.settings')
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '_xv&&+izvvg=7oib+12l%p@f!lpcd*z*^qx3_1r35553_mlr*='
+
+django.setup()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -19,8 +28,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_xv&&+izvvg=7oib+12l%p@f!lpcd*z*^qx3_1r35553_mlr*='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #'classDb.apps.TicketlogConfig',
+    'classDb.apps.ClassTrackerConfig',
+    'classDb.models.Course'
 ]
 
 MIDDLEWARE = [
@@ -50,7 +58,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'parking.urls'
+ROOT_URLCONF = 'classTracker.urls'
 
 TEMPLATES = [
     {
