@@ -1,4 +1,4 @@
-from mymodels import User
+from models import User
 
 
 def validate_user(a: User):
@@ -16,7 +16,7 @@ def validate_user(a: User):
         error_list.append("Enter a valid assignment ID")
     if a.role == "":
         error_list.append("User must be given a role")
-    if(a.user_id == ""):
+    if a.user_id == "":
         error_list.append("User must be given a user ID")
 
     return error_list
