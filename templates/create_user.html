@@ -1,29 +1,192 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Create User</title>
-</head>
-<body>
-<h1>Create User</h1>
+<html>
+  <head>
+    <title>Account registration form</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, select, p {
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      }
+      h1 {
+      margin: 0;
+      font-weight: 400;
+      }
+      h3 {
+      margin: 12px 0;
+      color: #8ebf42;
+      }
+      .main-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      }
+      fieldset {
+      border: none;
+      border-top: 1px solid #8ebf42;
+      }
+      .account-details, .personal-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      }
+      .account-details >div, .personal-details >div >div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      }
+      .account-details >div, .personal-details >div, input, label {
+      width: 100%;
+      }
+      label {
+      padding: 0 5px;
+      text-align: right;
+      vertical-align: middle;
+      }
+      input {
+      padding: 5px;
+      vertical-align: middle;
+      }
+      .checkbox {
+      margin-bottom: 10px;
+      }
+      select, .children, .accountType, .bdate-block {
+      width: calc(100% + 26px);
+      padding: 5px 0;
+      }
+      select {
+      background: transparent;
+      }
+      .accountType input {
+      width: auto;
+      }
+      .accountType label {
+      padding: 0 5px 0 0;
+      }
+      .bdate-block {
+      display: flex;
+      justify-content: space-between;
+      }
+      .birthdate select.day {
+      width: 35px;
+      }
+      .birthdate select.mounth {
+      width: calc(100% - 94px);
+      }
+      .birthdate input {
+      width: 38px;
+      vertical-align: unset;
+      }
+      .checkbox input, .children input {
+      width: auto;
+      margin: -2px 10px 0 0;
+      }
+      .checkbox a {
+      color: #8ebf42;
+      }
+      .checkbox a:hover {
+      color: #82b534;
+      }
+      button {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px;
+      border: none;
+      background: #8ebf42;
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      }
+      button:hover {
+      background: #82b534;
+      }
+      @media (min-width: 568px) {
+      .account-details >div, .personal-details >div {
+      width: 50%;
+      }
+      label {
+      width: 40%;
+      }
+      input {
+      width: 60%;
+      }
+      select, .children, .accountType, .bdate-block {
+      width: calc(60% + 16px);
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+    <form action="" method="post">{% csrf_token %}
+      <h1>Create User</h1>
+      <fieldset>
+        <legend>
+          <h3>Account Details</h3>
+        </legend>
+        <div  class="account-details">
+          <div><label>Email</label><input type="text" name="email" required></div>
+          <div><label>Password</label><input type="text" name="password" required></div>
+          <div><label>User Name</label><input type="text" name="user_name" required></div>
+          <div><label>User ID</label><input type="text" name="user_id" required></div>
 
-    <form action="" method="post">
-    {% csrf_token %}
-        <table>
-            <tr><td>User First Name: </td><td><input type="text" name="name"></td></tr>
-            <tr><td>User Last Name: </td><td><input type="text" name="lastName"></td></tr>
-            <tr><td>User Phone Number: </td><td><input type="text" name="phone_number"></td></tr>
-            <tr><td>User Id: </td><td><input type="text" name="user_ID"></td></tr>
-            <tr><td>User Account Type: </td><td><input type="text" name="role"></td></tr>
-            <tr><td>User Email: </td><td><input type="text" name="email"></td></tr>
-            <tr><td>User Assignment ID: </td><td><input type="text" name="assignment_ID"></td></tr>
-        </table>
-        <input type="submit" >
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <h3>Personal Details</h3>
+        </legend>
+        <div  class="personal-details">
+          <div>
+            <div><label>First Name</label><input type="text" name="name" required></div>
+            <div><label>Last Name</label><input type="text" name="lastName" required></div>
+            <div><label>Phone Number</label><input type="text" name="phone_number" required></div>
+            <div><label>Address</label><input type="text" name="address"></div>
+            <div><label>Assignment ID</label><input type="text" name="assignment_id"></div>
 
+            <div>
+              <label>Account Type</label>
+              <select name="role">
+                <option value="Ta">Ta</option>
+                <option value="Instructor">Instructor</option>
+                <option value="Supervisor">Supervisor</option>
+              </select>
+            </div>
+          </div>
+
+          </div>
+
+      </fieldset>
+      <fieldset>
+        <legend>
+          <h3>Relevant Messages</h3>
+        </legend>
+        <div  class="terms-mailing">
+          <div class="checkbox">
+               {% for i in errors%}
+                  <td> {{ i }}  </td><br>
+
+                 {% endfor %}
+          </div>
+
+````````</div>
+      </fieldset>
+      <button type="submit">Submit</button>
     </form>
-    {% for i in errors%}
-         <td> {{ i }}  </td><br>
-
-    {% endfor %}
-</body>
+    </div>
+  </body>
 </html>
