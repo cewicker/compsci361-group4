@@ -13,6 +13,7 @@ class Migration(migrations.Migration):
                 ('course_name', models.CharField(max_length=200)),
                 ('course_no', models.CharField(max_length=200)),
                 ('section_no', models.CharField(max_length=200)),
+                ('meeting_times', models.CharField(max_length=200)),
                 ('is_lab', models.BooleanField())
             ]
         )
