@@ -26,19 +26,21 @@ class CreateUser(View):
     def post(self, request):
         first_name = request.POST['name']
         last_name = request.POST['lastName']
-        user_id = request.POST['user_ID']
+        user_name = request.POST['user_name']
+        user_id = request.POST['user_id']
         number = request.POST['phone_number']
         role = request.POST['role']
-        assignment_id = request.POST['assignment_ID']
+        assignment_id = request.POST['assignment_id']
         email = request.POST['email']
+        password = request.POST['password']
 
-        user = User(first_name=first_name, last_name=last_name, id=user_id, number=number, role=role,
+        user = User(first_name=first_name, user_name=user_name, last_name=last_name, password=password, user_id=user_id, number=number, role=role,
                     assignment_ID=assignment_id, email=email)
         error_dict = []
         error_dict = validate_user(user)
-
+        valid = ["User successfully created"]
         if not error_dict:
             user.save()
-            return render(request, "create_user.html", {})
+            return render(request, "create_user.html", {"errors": valid})
         else:
             return render(request, "create_user.html", {"errors": error_dict})
