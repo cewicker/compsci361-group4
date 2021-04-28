@@ -2,7 +2,6 @@ from .models import User
 
 
 def validate_user(a: User):
-    new_user = a
     error_list = []
     if a.first_name == "":
         error_list.append("First name can't be empty")

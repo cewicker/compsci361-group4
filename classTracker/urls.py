@@ -24,3 +24,4 @@ urlpatterns = [
     path('courses/create_course', CreateCourse.as_view()),
     path('create_user/', CreateUser.as_view()),
 ]
+
