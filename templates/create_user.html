@@ -2,10 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UWM Class Tracker</title>
+    <title>Create User</title>
 </head>
-<a href='create_user'>create User</a>
 <body>
+<h1>Create User</h1>
 
+    <form action="create_user/" method="post">
+    {% csrf_token %}
+        <table>
+            <tr><td>User First Name: </td><td><input type="text" name="name"></td></tr>
+            <tr><td>User Last Name: </td><td><input type="text" name="lastName"></td></tr>
+            <tr><td>User Phone Number: </td><td><input type="text" name="phone_number"></td></tr>
+            <tr><td>User Id: </td><td><input type="text" name="user_ID"></td></tr>
+            <tr><td>User Account Type: </td><td><input type="text" name="role"></td></tr>
+            <tr><td>User Email: </td><td><input type="text" name="email"></td></tr>
+        </table>
+        <input type="submit">
+
+    </form>>
 </body>
 </html>
