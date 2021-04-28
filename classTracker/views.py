@@ -21,9 +21,6 @@ class CreateCourse(View):
         course.course_no = request.POST.get('course_no')
         course.section_no = request.POST.get('section_no')
         course.is_lab = request.POST.get('is_lab') == "on"
-        print(course.course_no)
-        print(course.section_no)
-        print(course.course_name)
         if course.course_no == "" or course.course_name == "" or course.section_no == "":
             return render(request, "create_course.html", {"message": "ERROR: all fields must be filled out"})
         else:
