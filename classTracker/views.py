@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from classTracker.models import User
+from classTracker.models import User, Course
 from .validateFunction import validate_user
 
 
@@ -17,7 +17,17 @@ class Courses(View):
 class CreateCourse(View):
     def get(self, request):
         return render(request, "create_course.html", {})
-
+    def post(self, request):
+        course = Course()
+        course.course_name = request.POST.get('course_name')
+        course.course_no = request.POST.get('course_no')
+        course.meeting_times = request.POST.get('meeting_times')
+        course.section_no = request.POST.get('section_no')
+        course.is_lab = request.POST.get('is_lab') == "on"
+        if course.course_no == "" or course.course_name == "" or course.section_no == "" or course.meeting_times == "":
+            return render(request, "create_course.html", {"message": "ERROR: all fields must be filled out"})
+        else:
+            course.save()
 
 class CreateUser(View):
     def get(self, request):

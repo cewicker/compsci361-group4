@@ -1,7 +1,7 @@
 import unittest
 
 from django.test import TestCase, Client
-from models import User
+from classTracker.models import User
 
 
 class TestCreateUser(TestCase):

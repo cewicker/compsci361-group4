@@ -4,7 +4,6 @@ from django.conf import settings
 
 class CourseCreationTests(unittest.TestCase):
     def setUp(self):
-        settings.configure(DEBUG=True)
         self.client = Client()
 
     def testCourseCreation(self):
