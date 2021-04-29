@@ -61,7 +61,8 @@ class LoginView(View):
 
     def post(self, request):
         m = request.POST['user_name']
+        error = "incorrect password/username"
         if m == "admin":
             return redirect('/home')
         else:
-            return render(request, "login.html", {})
+            return render(request, "login.html", {"login_errors": error})
