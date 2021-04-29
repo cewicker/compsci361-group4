@@ -11,7 +11,8 @@ class Home(View):
 
 class Courses(View):
     def get(self, request):
-        return render(request, "courses.html", {})
+        courses = Course.objects.all()
+        return render(request, "courses.html", {'courses': courses})
 
 
 class CreateCourse(View):
@@ -28,6 +29,7 @@ class CreateCourse(View):
             return render(request, "create_course.html", {"message": "ERROR: all fields must be filled out"})
         else:
             course.save()
+            return redirect("/courses")
 
 class CreateUser(View):
     def get(self, request):
