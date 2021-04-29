@@ -61,7 +61,7 @@
   </head>
   <body>
     <form action=' ' method="post">
-      <h1>Login Form</h1>
+      <h1>Login</h1>
       {% csrf_token %}
       <div class="formcontainer">
       <hr/>
@@ -74,10 +74,10 @@
       <button type="submit" formmethod="post">Login</button>
       <div class="container" style="background-color: #eee">
         <label style="padding-left: 15px">
-        {% for i in login_errors%}
-                  <td> {{ i }}  </td>
+       {% for i in login_errors%}
+            <td> {{ i }}  </td>
 
-                 {% endfor %}
+        {% endfor %}
         </label>
 
       </div>
