@@ -1,4 +1,4 @@
-from .models import User
+from classTracker.models import User
 
 
 def validate_user(a: User):

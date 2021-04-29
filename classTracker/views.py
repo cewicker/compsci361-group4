@@ -54,3 +54,14 @@ class CreateUser(View):
             return render(request, "create_user.html", {"errors": valid})
         else:
             return render(request, "create_user.html", {"errors": error_dict})
+
+class LoginView(View):
+    def get(self, request):
+        return render(request, "login.html", {})
+
+    def post(self, request):
+        m = request.POST['user_name']
+        if m == "admin":
+            return redirect('/home')
+        else:
+            return render(request, "login.html", {})
