@@ -2,6 +2,7 @@ import unittest
 from django.test import TestCase, Client
 from django.conf import settings
 
+
 class CourseCreationTests(TestCase):
     def setUp(self):
         self.client = Client()

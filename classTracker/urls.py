@@ -25,4 +25,3 @@ urlpatterns = [
     path('create_user/', CreateUser.as_view()),
     path('', LoginView.as_view()),
 ]
-

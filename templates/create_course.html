@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>UWM Class Tracker Create Course</title>
 
-</font>
-<center><font face = "times new roman" size = "8">Create a Course</font></center>
- <hr>
+    </font>
+    <center><font face="times new roman" size="8">Create a Course</font></center>
+    <hr>
 
-<a href='/'><font face = "verdana" size = "5">Home</font></a>
+    <a href='/'><font face="verdana" size="5">Home</font></a>
 
-<p> </p>
+    <p></p>
 
 </head>
 
 <body>
-<form action="/courses/create_course", method="post">
+<form action="/courses/create_course" , method="post">
     {% csrf_token %}
     <table>
         <label for="course_name">Course Name:</label>
@@ -186,7 +186,7 @@
         -->
         <label for="meeting_times">Meeting Times (e.g. M 3:30-4:50)</label>
         <input type="text" id="meeting_times" name="meeting_times"/>
-          <p></p>
+        <p></p>
         <label for="is_lab">Is Lab:</label>
         <input type="checkbox" id="is_lab" name="is_lab"/>
         <p>

@@ -18,6 +18,7 @@ class Courses(View):
 class CreateCourse(View):
     def get(self, request):
         return render(request, "create_course.html", {})
+
     def post(self, request):
         course = Course()
         course.course_name = request.POST.get('course_name')
@@ -30,6 +31,7 @@ class CreateCourse(View):
         else:
             course.save()
             return redirect("/courses")
+
 
 class CreateUser(View):
     def get(self, request):
@@ -46,7 +48,8 @@ class CreateUser(View):
         email = request.POST['email']
         password = request.POST['password']
 
-        user = User(first_name=first_name, user_name=user_name, last_name=last_name, password=password, user_id=user_id, number=number, role=role,
+        user = User(first_name=first_name, user_name=user_name, last_name=last_name, password=password, user_id=user_id,
+                    number=number, role=role,
                     assignment_ID=assignment_id, email=email)
         error_dict = []
         error_dict = validate_user(user)
@@ -57,17 +60,31 @@ class CreateUser(View):
         else:
             return render(request, "create_user.html", {"errors": error_dict})
 
+
 class LoginView(View):
     def get(self, request):
         return render(request, "login.html", {})
 
     def post(self, request):
-        m = request.POST['user_name']
         error = "Incorrect password/username try again"
         log_dict = []
-        log_dict.append(error)
-
-        if m == "admin":
+        noSuchUser = False
+        badPassword = False
+        if request.POST['user_name'] == "admin":
             return redirect('/home')
-        else:
+        try:
+
+            m = User.objects.get(user_name=request.POST['user_name'])
+            badPassword = (m.password != request.POST['password'])
+        except:
+            noSuchUser = True
+        if noSuchUser:
+
+            log_dict.append(error)
+            log_dict.append("noSuchUser")
             return render(request, "login.html", {"login_errors": log_dict})
+        elif badPassword:
+            return render(request, "login.html", {"login_errors": log_dict})
+        else:
+            request.session["user_name"] = m.user_name
+            return redirect("/home")

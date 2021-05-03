@@ -19,7 +19,8 @@ class UserAssignmentTests(unittest.TestCase):
         self.assertIn('testTa', response.context['course_tas'])
 
     def testInsAssignments(self):
-        response = self.client.patch('/courses', {'course_id': self.created_id.__str__, 'instructor_user_id': 'testIns'})
+        response = self.client.patch('/courses',
+                                     {'course_id': self.created_id.__str__, 'instructor_user_id': 'testIns'})
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/courses', {'course_id': self.created_id.__str__})
         self.assertIn('testTa', response.context['course_instructors'])
