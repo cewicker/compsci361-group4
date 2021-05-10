@@ -2,6 +2,7 @@ import unittest
 
 from django.test import TestCase, Client
 from classTracker.models import User
+from django.template import RequestContext
 
 
 class TestCreateUser(TestCase):
@@ -9,7 +10,7 @@ class TestCreateUser(TestCase):
         self.c = Client()
         self.user_data = {"user_ID": "axel650", "first_Name": "Axel", "last_Name": "Rodriguez",
                           "phone_Number": "414-555-5555", "role": "Admin", "assignment_ID": "1500",
-                          "email": "uwm@email.com"}
+                          "email": "uwm@email.com","user_name": "lucky"}
         session = self.c.session
 
     def test_page_redirect(self):
@@ -67,6 +68,7 @@ class TestCreateUser(TestCase):
         no_email["email"] = ""
         response = self.c.post('/', no_email, follow=True)
         assert "Enter a valid email" in response.context["errors"]
+
 
 
 if __name__ == '__main__':

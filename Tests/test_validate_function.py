@@ -1,5 +1,5 @@
 import unittest
-from models import User
+from classTracker.models import User
 from django.test import TestCase
 from classTracker.validateFunction import validate_user
 

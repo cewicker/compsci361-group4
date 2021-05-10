@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from classTracker.models import User, Course
 from .validateFunction import validate_user
+from django.db import IntegrityError
 
 
 class Home(View):
@@ -54,9 +55,15 @@ class CreateUser(View):
         error_dict = []
         error_dict = validate_user(user)
         valid = ["User successfully created"]
+
         if not error_dict:
-            user.save()
-            return render(request, "create_user.html", {"errors": valid})
+            try:
+                user.save()
+            except IntegrityError:
+                error_dict.append("user_name/user_id already exists")
+                return render(request, "create_user.html", {"errors": error_dict})
+            else:
+                return render(request, "create_user.html", {"errors": valid})
         else:
             return render(request, "create_user.html", {"errors": error_dict})
 
@@ -84,6 +91,7 @@ class LoginView(View):
             log_dict.append("noSuchUser")
             return render(request, "login.html", {"login_errors": log_dict})
         elif badPassword:
+            log_dict.append(error)
             return render(request, "login.html", {"login_errors": log_dict})
         else:
             request.session["user_name"] = m.user_name
