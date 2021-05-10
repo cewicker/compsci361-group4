@@ -60,7 +60,7 @@ class CreateUser(View):
             try:
                 user.save()
             except IntegrityError:
-                error_dict.append("user_name/user_id already exists")
+                error_dict.append("user_name / user_id already exists")
                 return render(request, "create_user.html", {"errors": error_dict})
             else:
                 return render(request, "create_user.html", {"errors": valid})
