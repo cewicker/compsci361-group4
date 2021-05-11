@@ -1,12 +1,172 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>UWM Class Tracker</title>
-</head>
-<a href='/courses'>Courses</a>
-<a href='/create_user'>Create User</a>
-<body>
+    <title>UWM Class Tracker Home</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
-</body>
-</html>
+
+
+    <style>
+        html, body {
+            display: flex;
+            justify-content: center;
+            font-family: Roboto, Arial, sans-serif;
+            font-size: 15px;
+        }
+
+        form {
+            border: 5px solid #f1f1f1;
+        }
+
+        input[type=text], input[type=password] {
+            width: 100%;
+            padding: 16px 8px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #8ebf42;
+            color: white;
+            padding: 14px 0;
+            margin: 10px 0;
+            border: none;
+            cursor: grabbing;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            fone-size: 18;
+        }
+
+          h4 {
+             font-family:"Segoe UI",Arial,sans-serif;
+              font-weight:450;
+              margin:10px;
+              font-size: 34px;
+              color: white;
+
+
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .formcontainer {
+            text-align: left;
+            margin: 24px 50px 12px;
+        }
+
+        .container {
+            padding: 16px 0;
+            text-align: left;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 0;
+            padding-right: 15px;
+        }
+
+        /* Change styles for span on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+        }
+
+
+        /* all sidebar */
+        .sidebar {
+          height: 100%;
+          width: 250px;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 200px;
+          background-color: #8ebf42;
+          overflow-x: hidden;
+          padding-top: 20px;
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidebar a, .dropdown-btn {
+
+          text-decoration: none;
+          font-size: 20px;
+
+          color: #000000;
+          display: block;
+          border: none;
+          background: none;
+          width: 100%;
+          text-align: left;
+          cursor: pointer;
+          outline: none;
+        }
+
+
+
+        /* Main content */
+        .main {
+          margin-left: 200px; /* Same as the width of the sidenav */
+          font-size: 20px; /* Increased text to enable scrolling */
+          padding: 0px 10px;
+        }
+        /*Padding*/
+        .pad{
+         margin-left: 200px; /* Same as the width of the sidenav */
+          padding: 0px 10px;
+        }
+
+        .button4 {
+              font-family:"Segoe UI",Arial,sans-serif;
+              font-size: 24px;
+              font-weight:200;
+              font-weight: bold;
+            color: #000000;
+              text-align: left;
+             }
+
+        .button4:hover {background-color: #e7e7e7;}
+
+
+        @media screen and (max-height: 450px) {
+          .sidebar {padding-top: 15px;}
+            .sidebar {padding-left: 150px;}
+          .sidebar a {font-size: 18px;}
+        }
+        </style>
+        </head>
+        <body>
+
+
+        <div class="sidebar">
+
+          <h4>UWM COMPUTER SCIENCE</h4>
+            <div style="padding-top: 100px;">
+
+            <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
+             <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
+
+
+
+
+
+
+
+
+
+            </style>
+
+        </head>
+
+
+        </div>
+        </body>
+        </html>
