@@ -96,3 +96,6 @@ class LoginView(View):
         else:
             request.session["user_name"] = m.user_name
             return redirect("/home")
+class courseAssignment(View):
+    def get(self, request):
+        return render(request, "assign_to_course.html", {})
