@@ -621,6 +621,7 @@ input, label2 {
             <td>{{ i.section_no }}</td>
             <td>{{ i.meeting_times }}</td>
             <td>{{ i.is_lab }}</td>
+            <td><a href={% url 'createCourse' i.id %}>Edit</a></td>
         </tr>
         </tr>
     </table>

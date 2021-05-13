@@ -21,30 +21,16 @@ class CourseCreationTests(TestCase):
     def testDupCourseNumber(self):
         response = self.client.post('/courses/create_course',
                                     {'course_name': 'test_course', 'course_no': '000', 'section_no': '000',
-                                     'is_lab': 'false'})
+                                     'meeting_times': 'None', 'is_lab': 'false'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.context['created_course_id'], '000')
         self.assertEquals(response.context['section_no'], '000')
         self.assertEquals(response.context['is_lab'], 'false')
         response = self.client.post('/courses/create_course',
                                     {'course_name': 'test_course 2', 'course_no': '000', 'section_no': '000',
-                                     'is_lab': 'false'})
+                                     'is_lab': 'false', 'meeting_times': 'None'})
         self.assertNotEquals(response.status_code, 302)
         # should stay on the page and tell user they cannot make two courses with the same number
-
-    def testDupCourseNumber(self):
-        response = self.client.post('/courses/create_course',
-                                    {'course_name': 'test_course', 'course_no': '000', 'section_no': '000',
-                                     'is_lab': 'false'})
-        self.assertEquals(response.status_code, 302)
-        self.assertEquals(response.context['created_course_id'], '000')
-        self.assertEquals(response.context['section_no'], '000')
-        self.assertEquals(response.context['is_lab'], 'false')
-        response = self.client.post('/courses/create_course',
-                                    {'course_name': 'test_course', 'course_no': '001', 'section_no': '000',
-                                     'is_lab': 'false'})
-        self.assertNotEquals(response.status_code, 302)
-        # should stay on the page and tell user they cannot make two courses with the same name
 
     def testDupSectionCreation(self):
         response = self.client.post('/courses/create_course',

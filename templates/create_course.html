@@ -15,17 +15,21 @@
 </head>
 
 <body>
-<form action="/courses/create_course" , method="post">
+{% if edit_mode %}
+    <form action={% url 'createCourse' course_id_in %} method="post">
+{% else %}
+    <form action="/courses/create_course" , method="post">
+{% endif %}
     {% csrf_token %}
     <table>
         <label for="course_name">Course Name:</label>
-        <input type="text" id="course_name" name="course_name"/>
+        <input type="text" id="course_name" name="course_name" value={{ course_name_in }}></input>
         <p></p>
         <label for="course_no">Course No.:</label>
-        <input type="text" id="course_no" name="course_no"/>
+        <input type="text" id="course_no" value={{ course_no_in }} name="course_no"/>
         <p></p>
         <label for="section_no">Section No.:</label>
-        <input type="text" id="section_no" name="section_no"/>
+        <input type="text" id="section_no" value={{ section_no_in }} name="section_no"/>
         <p></p>
         <!--
         <label for="monday_start_hour">Monday Start Time:</label>
@@ -184,11 +188,12 @@
         </select>
         <p></p>
         -->
+
         <label for="meeting_times">Meeting Times (e.g. M 3:30-4:50)</label>
-        <input type="text" id="meeting_times" name="meeting_times"/>
+        <input type="text" id="meeting_times" value={{ meeting_times_in }} name="meeting_times"/>
         <p></p>
         <label for="is_lab">Is Lab:</label>
-        <input type="checkbox" id="is_lab" name="is_lab"/>
+        <input type="checkbox" id="is_lab" {% if is_lab_in %} checked {% endif %}name="is_lab"/>
         <p>
     </table>
     <input type="submit">

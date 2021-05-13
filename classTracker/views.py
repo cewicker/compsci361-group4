@@ -14,7 +14,27 @@ class Courses(View):
     def get(self, request):
         courses = Course.objects.all()
         return render(request, "courses.html", {'courses': courses})
+    def post(self, request):
+        return redirect("/courses/create_course", {'course_id': request.POST.get})
 
+
+class EditCourse(View):
+    def get(self, request, courseId):
+        course = Course.objects.get(id=courseId)
+        return render(request, "create_course.html", {'course_name_in': course.course_name, 'course_no_in': course.course_no, 'meeting_times_in': course.meeting_times, 'section_no_in': course.section_no, 'is_lab_in': course.is_lab, 'course_id_in': courseId, 'edit_mode': True})
+
+    def post(self, request, courseId):
+        course = Course.objects.get(id=courseId)
+        course.course_name = request.POST.get('course_name')
+        course.course_no = request.POST.get('course_no')
+        course.meeting_times = request.POST.get('meeting_times')
+        course.section_no = request.POST.get('section_no')
+        course.is_lab = request.POST.get('is_lab') == "on"
+        if course.course_no == "" or course.course_name == "" or course.section_no == "" or course.meeting_times == "":
+            return render(request, "create_course.html", {"message": "ERROR: all fields must be filled out"})
+        else:
+            course.save()
+            return redirect("/courses")
 
 class CreateCourse(View):
     def get(self, request):
