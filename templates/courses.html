@@ -350,6 +350,9 @@ input, label2 {
             <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
             <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
              <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
+              <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
+
+
 
  </div></div>
         <div style="padding-left: 460px;">
@@ -586,7 +589,10 @@ input, label2 {
 <input type="time" id="appt" name="appt"
        min="8:50" max="21:00" required>
 
+<p></p>
 
+          <label for="meeting_times">Meeting Times (e.g. MW 3:30-4:50)</label>
+        <input type="text" id="meeting_times" name="meeting_times"/>
 
 </td>
         <label for="is_lab"><p></p>Is Lab:</label>
@@ -621,7 +627,6 @@ input, label2 {
             <td>{{ i.section_no }}</td>
             <td>{{ i.meeting_times }}</td>
             <td>{{ i.is_lab }}</td>
-            <td><a href={% url 'createCourse' i.id %}>Edit</a></td>
         </tr>
         </tr>
     </table>
