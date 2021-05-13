@@ -6,7 +6,7 @@ from classTracker.validateFunction import validate_user
 
 
 
-class TestValidateFunction(unittest.TestCase):
+class TestValidateFunction(TestCase):
 
     def test_good_input(self):
         user = User(first_name="test", last_name="last test", id="badger", number="414", role="Supervisor",
