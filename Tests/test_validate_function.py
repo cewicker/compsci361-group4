@@ -2,6 +2,7 @@ import unittest
 from classTracker.models import User
 from django.test import TestCase
 from classTracker.validateFunction import validate_user
+from classTracker.settings import INSTALLED_APPS
 
 
 class TestValidateFunction(unittest.TestCase):

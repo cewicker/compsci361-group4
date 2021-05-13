@@ -19,6 +19,7 @@ class TestCreateUser(TestCase):
 
     def test_create_user_name(self):
         response = self.c.post('/', self.user_data, follow=True)
+        print("test")
         self.assertEqual("Axel", response.context["first_Name"], "Name not the same as entered name")
         self.assertEqual("Rodriguez", response.context["last_Name"], "Last name not the same as entered last name")
         self.assertEqual("axel650", response.context["user_ID"], "User ID not the same as entered ID")
@@ -31,6 +32,7 @@ class TestCreateUser(TestCase):
         no_name = self.user_data
         no_name["name"] = ""
         response = self.c.post('/', no_name, follow=True)
+        print(response.context["errors"])
         assert "First name can't be empty" in response.context["errors"]
 
     def test_no_last_name(self):
