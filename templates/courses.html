@@ -337,6 +337,35 @@ input, label2 {
     margin: .4rem 0;
 }
 
+#courses {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#courses td, #courses th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#courses tr:nth-child(even){background-color: #f2f2f2;}
+
+#courses tr:hover {background-color: #ddd;}
+
+#courses th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+.divider {
+    width:5px;
+    height: 100px;
+    display: inline-block;
+}
+
     </style>
 </head>
 <body>
@@ -380,7 +409,7 @@ input, label2 {
 <div class="main-block">
 {{ message }}
 
-    <fieldset>
+    <fieldset style="width: 80%;">
             <legend>
                 <h3>All Courses</h3>
             </legend>
@@ -388,14 +417,15 @@ input, label2 {
                 <div>
 
 
-{% for i in courses %}
-    <table>
+    <table id="courses">
         <tr>
             <th>Course Name</th>
             <th>Course Number</th>
             <th>Section Number</th>
             <th>Meeting Times</th>
             <th>Is Lab</th>
+        </tr>
+        {% for i in courses %}
         <tr>
             <td>{{ i.course_name }}</td>
             <td>{{ i.course_no }}</td>
@@ -404,13 +434,12 @@ input, label2 {
             <td>{{ i.is_lab }}</td>
             <td><a href={% url 'createCourse' i.id %}>Edit</a></td>
         </tr>
-        </tr>
+        {% endfor %}
     </table>
-{% endfor %}
 
 </fieldset>
-
-<a href="/courses/create_course" ><button class="button button4"><div style="padding-left: 10px;">Create Course</div></button></a>
+<div class="divider"/>
+    <a href="/courses/create_course" ><button class="button button4"><div style="padding-left: 10px; padding-right: 10px;">Create Course</div></button></a>
 
 </body>
 </html>
