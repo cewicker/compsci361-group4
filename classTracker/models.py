@@ -1,13 +1,8 @@
 from django.db import models
 
 
-# Create your models here.
-class Course(models.Model):
-    course_no = models.CharField(max_length=200, default="")
-    section_no = models.CharField(max_length=200, default="")
-    course_name = models.CharField(max_length=200, default="")
-    meeting_times = models.CharField(max_length=200, default="")
-    is_lab = models.BooleanField(default=False)
+# Create your models here
+from django.db.models import SET_NULL
 
 
 class User(models.Model):
@@ -20,3 +15,12 @@ class User(models.Model):
     role = models.CharField(max_length=50)
     assignment_ID = models.CharField(max_length=50,unique=True)
     email = models.CharField(max_length=50,unique=True)
+
+
+class Course(models.Model):
+    course_no = models.CharField(max_length=200, default="")
+    section_no = models.CharField(max_length=200, default="")
+    course_name = models.CharField(max_length=200, default="")
+    meeting_times = models.CharField(max_length=200, default="")
+    is_lab = models.BooleanField(default=False)
+    instructor = models.ForeignKey(User, null=True, on_delete=SET_NULL)

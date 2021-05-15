@@ -14,6 +14,7 @@ class Courses(View):
     def get(self, request):
         courses = Course.objects.all()
         return render(request, "courses.html", {'courses': courses})
+
     def post(self, request):
         return redirect("/courses/create_course", {'course_id': request.POST.get})
 
@@ -21,7 +22,10 @@ class Courses(View):
 class EditCourse(View):
     def get(self, request, courseId):
         course = Course.objects.get(id=courseId)
-        return render(request, "create_course.html", {'course_name_in': course.course_name, 'course_no_in': course.course_no, 'meeting_times_in': course.meeting_times, 'section_no_in': course.section_no, 'is_lab_in': course.is_lab, 'course_id_in': courseId, 'edit_mode': True})
+        return render(request, "create_course.html",
+                      {'course_name_in': course.course_name, 'course_no_in': course.course_no,
+                       'meeting_times_in': course.meeting_times, 'section_no_in': course.section_no,
+                       'is_lab_in': course.is_lab, 'course_id_in': courseId, 'edit_mode': True})
 
     def post(self, request, courseId):
         course = Course.objects.get(id=courseId)
@@ -35,6 +39,7 @@ class EditCourse(View):
         else:
             course.save()
             return redirect("/courses")
+
 
 class CreateCourse(View):
     def get(self, request):
@@ -116,6 +121,28 @@ class LoginView(View):
         else:
             request.session["user_name"] = m.user_name
             return redirect("/home")
+
+
 class courseAssignment(View):
     def get(self, request):
-        return render(request, "assign_to_course.html", {})
+        course_list = list(Course.objects.all())
+        instructor_list = list(User.objects.all())
+        return render(request, "assign_to_course.html", {"course_list": course_list, "user_list": instructor_list})
+
+    def post(self, request):
+        course_list = list(Course.objects.all())
+        instructor_list = list(User.objects.all())
+
+        instructor_1 = request.POST['instructor']
+        instructor_array = instructor_1.split()
+
+        instructor_obj = User.objects.get(first_name=instructor_array[0], last_name=instructor_array[1])
+
+        courseName2 = request.POST['course_name']
+
+        courseObject = Course.objects.get(course_name=courseName2)
+        courseObject.instructor=instructor_obj
+        courseObject.save()
+
+        return render(request, "assign_to_course.html",
+                      {"course_list": course_list, "user_list": instructor_list})
