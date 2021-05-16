@@ -332,6 +332,9 @@
 
         <br>
         <div>Your TA's Assignments:</div>
+            {% for i in course_list %}
+                {{ i.course_name }}
+            {% endfor %}
     </form>
        </div>
 
