@@ -10,9 +10,7 @@ class Home(View):
         user_name = request.session['user']
         user = User.objects.get(user_name = user_name)
         course_list = list(Course.objects.filter(instructor = user))
-        course_names_list = list
-        #for i in course_list:
-            #course_names_list.append(i.course_name)
+
         return render(request, "home.html", {'course_list': course_list})
 
 
