@@ -10,12 +10,13 @@ class CourseCreationTests(TestCase):
     def testCourseCreation(self):
         response = self.client.post('/courses/create_course',
                                     {'course_name': 'test_course', 'course_no': '000', 'section_no': '000',
-                                     'is_lab': 'false'})
+                                     'is_lab': 'false', 'meeting_times': 'MW 10:30-12:00'})
         self.assertEquals(response.status_code, 302)
         self.assertEquals(response.context['course_name'], 'test_course')
         self.assertEquals(response.context['course_no'], '000')
         self.assertEquals(response.context['section_no'], '000')
         self.assertEquals(response.context['is_lab'], 'false')
+        self.assertEquals(response.context['meeting_times'], 'MW 10:30-12:00')
         self.assertEquals(response.get_full_path(), '/courses')
 
     def testDupCourseNumber(self):

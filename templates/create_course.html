@@ -19,10 +19,9 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
 
     <style>
-
-
         html, body {
             min-height: 100%;
+
         }
 
         body, div, form, input, select, p {
@@ -32,6 +31,7 @@
             font-family: Roboto, Arial, sans-serif;
             font-size: 14px;
             color: #666;
+
         }
 
         h1 {
@@ -49,6 +49,7 @@
             justify-content: center;
             align-items: center;
             background: #fff;
+
         }
 
         form {
@@ -83,14 +84,13 @@
             vertical-align: middle;
         }
 
-
         input {
             padding: 5px;
             vertical-align: middle;
         }
 
         .checkbox {
-            margin-bottom: 1px;
+            margin-bottom: 10px;
         }
 
         select, .children, .accountType, .bdate-block {
@@ -173,7 +173,6 @@
             select, .children, .accountType, .bdate-block {
                 width: calc(60% + 16px);
             }
-
         }
 
         form {
@@ -250,7 +249,7 @@
             position: fixed;
             z-index: 1;
             top: 0;
-            left: 200px;
+            left: 0px;
             background-color: #8ebf42;
             overflow-x: hidden;
             padding-top: 20px;
@@ -297,87 +296,23 @@
 
         .button4:hover {background-color: #e7e7e7;}
 
-
         @media screen and (max-height: 450px) {
             .sidebar {padding-top: 15px;}
             .sidebar {padding-left: 150px;}
-            .sidebar a {
-                font-size: 18px;
-            }
-        }
-
-
-        .weekDays-selector input {
-            display: none!important;
-        }
-
-        .weekDays-selector input[type=checkbox] + label {
-            display: inline-block;
-            border-radius: 6px;
-            background: #dddddd;
-            height: 40px;
-            width: 30px;
-            margin-right: 3px;
-            line-height: 40px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .weekDays-selector input[type=checkbox]:checked + label {
-            background: #82b534;
-            color: #ffffff;
-        }
-
-        label2{
-            display: block;
-            font: 1rem 'Fira Sans', sans-serif;
-        }
-
-        input, label2 {
-            margin: .4rem 0;
+            .sidebar a {font-size: 18px;}
         }
 
     </style>
 </head>
 <body>
-
 <div class="sidebar">
-
     <h4>UWM COMPUTER SCIENCE</h4>
-
-    <div style="padding-top: 100px;">
-
         <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
         <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
         <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
         <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
-
-
-
-    </div></div>
-<div style="padding-left: 460px;">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="main-block">
+    </div>
+    <div class="main-block" style="position: relative; left: 600px; width: 1000px ">
         {% if edit_mode %}
             <form action={% url 'createCourse' course_id_in %} method="post">
         {% else %}

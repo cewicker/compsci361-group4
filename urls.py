@@ -19,12 +19,12 @@ from classTracker.views import Home, Courses, CreateCourse, CreateUser, LoginVie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('home/', Home.as_view()),
+    path('home/', Home.as_view(), name="homePage"),
     path('courses/', Courses.as_view()),
     path('courses/create_course', CreateCourse.as_view(), name="createCourse"),
     path('courses/create_course<int:courseId>', EditCourse.as_view(), name="createCourse"),
-    path('create_user/', CreateUser.as_view(), name="createUser"),
-    path('create_user<int:userId>/', EditUser.as_view(),name="createUser"),
+    path('create_user', CreateUser.as_view(), name="createUser"),
+    path('create_user<int:userId>', EditUser.as_view(),name="createUser"),
     path('', LoginView.as_view()),
     path('assign_to_course/', courseAssignment.as_view()),
 

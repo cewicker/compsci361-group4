@@ -7,8 +7,8 @@ from django.db import IntegrityError
 
 class Home(View):
     def get(self, request):
-        user_name = request.session['user']
-        user = User.objects.get(user_name = user_name)
+        user_name = request.session['user_name']
+        user = User.objects.get(user_name = request.session['user_name'])
         course_list = list(Course.objects.filter(instructor = user))
         course_names_list = list
         #for i in course_list:
@@ -62,7 +62,7 @@ class CreateCourse(View):
             return render(request, "create_course.html", {"message": "ERROR: all fields must be filled out"})
         else:
             course.save()
-            return redirect("/courses")
+            return redirect("/courses", {'course_name': course.course_name})
 
 
 class CreateUser(View):
@@ -126,6 +126,7 @@ class LoginView(View):
             return render(request, "login.html", {"login_errors": log_dict})
         else:
             request.session['user'] = m.user_name
+            request.session.modified = True
             return redirect("/home")
 
 

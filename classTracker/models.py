@@ -18,7 +18,7 @@ class User(models.Model):
 
 
 class Course(models.Model):
-    course_no = models.CharField(max_length=200, default="")
+    course_no = models.CharField(max_length=200, default="", unique=True)
     section_no = models.CharField(max_length=200, default="")
     course_name = models.CharField(max_length=200, default="")
     meeting_times = models.CharField(max_length=200, default="")
