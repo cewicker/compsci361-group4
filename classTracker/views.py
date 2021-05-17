@@ -7,12 +7,10 @@ from django.db import IntegrityError
 
 class Home(View):
     def get(self, request):
-        user_name = request.session['user_name']
-        user = User.objects.get(user_name = request.session['user_name'])
-        course_list = list(Course.objects.filter(instructor = user))
-
+        user_name = request.session['user']
+        user = User.objects.get(user_name=user_name)
+        course_list = list(Course.objects.filter(instructor=user))
         return render(request, "home.html", {'course_list': course_list})
-
 
 class Courses(View):
     def get(self, request):
