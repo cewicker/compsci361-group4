@@ -137,38 +137,36 @@ class LoginView(View):
 class EditUser(View):
     def get(self, request, userId):
         user = User.objects.get(id=userId)
-        return render(request, "create_user.html", {'first_name_in': user.first_name, 'last_name_in': user.last_name, 'password_in': user.password, 'user_name_in': user.user_name, 'user_id_in': user.user_id, 'number_in': user.number, 'role_in': user.role, 'assignment_ID_in': user.assignment_ID, 'email_in': user.email, 'edit_mode': True})
+        return render(request, "create_user.html", {'first_name_in': user.first_name, 'last_name_in': user.last_name,
+                                                    'password_in': user.password, 'user_name_in': user.user_name,
+                                                    'user_id_in': user.user_id, 'number_in': user.number,
+                                                    'role_in': user.role, 'assignment_ID_in': user.assignment_ID,
+                                                    'email_in': user.email,
+                                                    'userId_in': userId, 'edit_mode': True})
 
     def post(self, request, userId):
         user = User.objects.get(id=userId)
-        first_name = request.POST['name']
-        last_name = request.POST['lastName']
-        user_name = request.POST['user_name']
-        user_id = request.POST['user_id']
-        number = request.POST['phone_number']
-        role = request.POST['role']
-        assignment_id = request.POST['assignment_id']
-        email = request.POST['email']
-        password = request.POST['password']
-
-        user = User(first_name=first_name, user_name=user_name, last_name=last_name, password=password, user_id=user_id,
-                    number=number, role=role,
-                    assignment_ID=assignment_id, email=email)
+        user.first_name = request.POST.get('name')
+        user.last_name = request.POST.get('lastName')
+        user.user_name = request.POST.get('user_name')
+        user.user_id = request.POST.get('user_id')
+        user.number = request.POST.get('phone_number')
+        user.role = request.POST.get('role')
+        user.assignment_ID = request.POST.get('assignment_id')
+        user.email = request.POST.get('email')
+        user.password = request.POST.get('password')
 
         error_dict = []
         error_dict = validate_user(user)
         valid = ["User successfully edited"]
 
-        if not error_dict:
-            try:
-                user.save()
-            except IntegrityError:
-                error_dict.append("user_name / user_id already exists")
-                return render(request, "create_user.html", {"errors": error_dict})
-            else:
-                return render(request, "create_user.html", {"errors": valid})
+        if user.first_name == "" or user.last_name == "" or user.user_name == "" or user.user_id == "" or \
+                user.number == "" or user.role == "" or user.assignment_ID == "" or user.email == "" \
+                or user.password == "":
+            return render(request, "create_user.html", {"message": "ERROR: all fields must be filled out"})
         else:
-            return render(request, "create_user.html", {"errors": error_dict})
+            user.save()
+            return redirect("/users")
 class courseAssignment(View):
     def get(self, request):
         course_list = list(Course.objects.all())

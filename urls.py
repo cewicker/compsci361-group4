@@ -24,8 +24,8 @@ urlpatterns = [
     path('users/', Users.as_view()),
     path('courses/create_course', CreateCourse.as_view(), name="createCourse"),
     path('courses/create_course<int:courseId>', EditCourse.as_view(), name="createCourse"),
-    path('create_user', CreateUser.as_view(), name="createUser"),
-    path('create_user<int:userId>', EditUser.as_view(),name="createUser"),
+    path('create_user/', CreateUser.as_view(), name="createUser"),
+    path('create_user<int:userId>/', EditUser.as_view(),name="createUser"),
     path('', LoginView.as_view()),
     path('assign_to_course/', courseAssignment.as_view()),
 
