@@ -296,16 +296,30 @@
 
 </head>
 <body>
+
         <div class="sidebar">
+
           <h4>UWM COMPUTER SCIENCE</h4>
+
             <div style="padding-top: 100px;">
+
                 <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
                 <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
                 <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
                 <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
                 <a href="/users" ><button class="button button4"><div style="padding-left: 10px;">Users</div></button></a>
+
  </div></div>
         <div style="padding-left: 460px;">
+
+
+
+
+
+
+
+
+
 <div class="main-block" style="position: relative ;left: -200px; width: 1000px">
     {% if edit_mode %}
         <form action={% url 'createUser' userId_in %} method="post">
@@ -313,22 +327,16 @@
         <form action="/create_user/" , method="post">
     {% endif %}
     {% csrf_token %}
-    {% if edit_mode %}
-        <h1>Edit User</h1>
-    {% else %}
         <h1>Create User</h1>
-    {% endif %}
         <fieldset>
             <legend>
                 <h3>Account Details</h3>
             </legend>
             <div class="account-details">
                 <div><label>Email</label><input type="text" name="email" value={{ email_in }}></div>
-                <div><label>Password</label><input type="password" name="password" value={{ password_in }}></div>
-                {% if not edit_mode %}
+                <div><label>Password</label><input type="text" name="password" value={{ password_in }}></div>
                 <div><label>User Name</label><input type="text" name="user_name" value={{ user_name_in }}></div>
                 <div><label>User ID</label><input type="text" name="user_id" value={{ user_id_in }}></div>
-                {% endif %}
 
             </div>
         </fieldset>
