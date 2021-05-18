@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UWM Class Tracker Courses</title>
+    <title>UWM Class Tracker Users</title>
 </head>
 
 
@@ -337,22 +337,22 @@ input, label2 {
     margin: .4rem 0;
 }
 
-#courses {
+#users {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#courses td, #courses th {
+#users td, #users th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#courses tr:nth-child(even){background-color: #f2f2f2;}
+#users tr:nth-child(even){background-color: #f2f2f2;}
 
-#courses tr:hover {background-color: #ddd;}
+#users tr:hover {background-color: #ddd;}
 
-#courses th {
+#users th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -376,10 +376,10 @@ input, label2 {
 
             <div style="padding-top: 100px;">
 
-            <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
-            <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
-             <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
-              <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
+                <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
+                <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
+                <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
+                <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
                 <a href="/users" ><button class="button button4"><div style="padding-left: 10px;">Users</div></button></a>
 
 
@@ -414,33 +414,35 @@ input, label2 {
             <legend>
                 <h3>All Courses</h3>
             </legend>
-            <div class="all-courses">
+            <div class="all-users">
                 <div>
 
 
-    <table id="courses" style="width: 100%;">
+    <table id="users" style="width: 100%;">
         <tr>
-            <th>Course Name</th>
-            <th>Course Number</th>
-            <th>Section Number</th>
-            <th>Meeting Times</th>
-            <th>Is Lab</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Number</th>
+            <th>Role</th>
+            <th>E-Mail</th>
         </tr>
-        {% for i in courses %}
+        {% for i in users %}
         <tr>
-            <td>{{ i.course_name }}</td>
-            <td>{{ i.course_no }}</td>
-            <td>{{ i.section_no }}</td>
-            <td>{{ i.meeting_times }}</td>
-            <td>{{ i.is_lab }}</td>
-            <td><a href={% url 'createCourse' i.id %}>Edit</a></td>
+            <td>{{ i.first_name}}</td>
+            <td>{{ i.last_name  }}</td>
+            <td>{{ i.user_name }}</td>
+            <td>{{ i.number }}</td>
+            <td>{{ i.role }}</td>
+            <td>{{ i.email}}</td>
+            <td><a href={% url 'createUser' i.id %}>Edit</a></td>
         </tr>
         {% endfor %}
     </table>
 
 </fieldset>
 <div class="divider"/>
-    <a href="/courses/create_course" ><button class="button button4"><div style="padding-left: 10px; padding-right: 10px;">Create Course</div></button></a>
+    <a href="create_user" ><button class="button button4"><div style="padding-left: 10px; padding-right: 10px;">Create Course</div></button></a>
 
 </body>
 </html>

@@ -20,6 +20,13 @@ class Courses(View):
     def post(self, request):
         return redirect("/courses/create_course", {'course_id': request.POST.get})
 
+class Users(View):
+    def get(self, request):
+        users = User.objects.all()
+        return render(request, "users.html", {'users': users})
+
+    def post(self, request):
+        return redirect("create_user", {})
 
 class EditCourse(View):
     def get(self, request, courseId):
