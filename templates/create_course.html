@@ -307,24 +307,27 @@
 <body>
 <div class="sidebar">
     <h4>UWM COMPUTER SCIENCE</h4>
+    <div style="padding-top: 100px;">
         <a href="/home" ><button class="button button4"><div style="padding-left: 10px;">Home</div></button></a>
         <a href="/courses" ><button class="button button4"><div style="padding-left: 10px;">Courses</div></button></a>
         <a href="/create_user" ><button class="button button4"><div style="padding-left: 10px;">Create User</div></button></a>
         <a href="/assign_to_course" ><button class="button button4"><div style="padding-left: 10px;">Assign to Course</div></button></a>
         <a href="/users" ><button class="button button4"><div style="padding-left: 10px;">Users</div></button></a>
-    </div>
-    <div class="main-block" style="position: relative; left: 600px; width: 1000px ">
+    </div></div>
+<div style="padding-left: 460px;">
+    <div class="main-block" style="position: relative ;left: -200px; width: 1000px">
         {% if edit_mode %}
             <form action={% url 'createCourse' course_id_in %} method="post">
         {% else %}
             <form action="/courses/create_course" , method="post">
         {% endif %}
         {% csrf_token %}
-            <h1>Add Courses</h1>
+        {% if edit_mode %}
+            <h1>Edit Course</h1>
+        {% else %}
+            <h1>Create Course</h1>
+        {% endif %}
             <fieldset>
-                <legend>
-                    <h3>Add Course</h3>
-                </legend>
                 <div class="add-course">
                         {% csrf_token %}
                             <label for="course_name">Course Name:</label>
